@@ -1,0 +1,17 @@
+{% extends "flowpatrolcore/base.html" %}
+
+{% block content %}
+
+
+    <div class='lowerContainer'>
+        <div class="pageTitle">
+            <h1>{{ self.title }}</h1>
+        </div>
+        {% include "flowpatrolcore/includes/intro.html" with intro=self.intro only %}
+        {% include "flowpatrolcore/includes/body.html" with body=self.body only %}
+        <div class='formContainer'>
+                {% include "flowpatrolcore/includes/contact_form.html" %}
+        </div>
+    </div>
+    {% include "flowpatrolcore/includes/related_links.html" with related_links=self.related_links.all only %}
+{% endblock %}

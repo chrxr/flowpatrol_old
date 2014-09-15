@@ -1,0 +1,6 @@
+/.vagrant
+/flowpatrol/settings/local.py
+/static
+*.pyc
+/media
+/Vagrantfile.local
