@@ -6,7 +6,7 @@
 # Tested on Ubuntu 13.04 and 13.10.
 # Tom Dyson and Neal Todd
 
-PROJECT=mywagtail
+PROJECT=flowpatrol
 PROJECT_ROOT=/usr/local/django
 
 echo "This script overwrites key files, and should only be run on a new box."
@@ -50,8 +50,8 @@ service elasticsearch start
 cd $PROJECT_ROOT
 git clone https://github.com/chrxr/flowpatrol.git $PROJECT
 cd $PROJECT
-mv wagtaildemo $PROJECT
-perl -pi -e"s/wagtaildemo/$PROJECT/" manage.py $PROJECT/wsgi.py $PROJECT/settings/*.py
+mv flowpatrol $PROJECT
+perl -pi -e"s/flowpatrol/$PROJECT/" manage.py $PROJECT/wsgi.py $PROJECT/settings/*.py
 rm -r etc README.md Vagrantfile* .git .gitignore
 
 dd if=/dev/zero of=/tmpswap bs=1024 count=524288
