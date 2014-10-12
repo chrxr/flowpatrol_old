@@ -5,7 +5,7 @@ import uuid
 
 env.roledefs = {
     'staging': ['root@107.170.78.41'],
-#    'production': [''],
+    'production': ['root@107.170.78.41'],
 }
 
 PROJECT = "flowpatrol"
@@ -23,10 +23,10 @@ def deploy_staging():
         run("git pull")
         run("git submodule update")
         run("/usr/local/django/virtualenvs/flowpatrol/bin/pip install -r requirements/production.txt")
-        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py syncdb --settings=pdssite.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py migrate --settings=pdssite.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py collectstatic --settings=pdssite.settings.production --noinput")
-        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py compress --force --settings=pdssite.settings.production")
+        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py syncdb --settings=flowpatrol.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py migrate --settings=flowpatrol.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py collectstatic --settings=flowpatrol.settings.production --noinput")
+        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py compress --force --settings=flowpatrol.settings.production")
 
     run("sudo /usr/bin/supervisorctl restart flowpatrol")
 
@@ -69,26 +69,26 @@ def push_staging_data():
     run('psql -U%s -h %s -f %s' % (STAGING_DB_USERNAME, STAGING_DB_SERVER, remote_path))
     run('rm %s' % remote_path)
 
-#@roles('production')
-#def pull_live_data():
-#    filename = "%s-%s.sql" % (DB_NAME, uuid.uuid4())
-#    local_path = "%s%s" % (LOCAL_DUMP_PATH, filename)
-#    remote_path = "%s%s" % (REMOTE_DUMP_PATH, filename)
-#    local_db_backup_path = "%svagrant-%s-%s.sql" % (LOCAL_DUMP_PATH, DB_NAME, uuid.uuid4())
-#
-#    run('pg_dump -xOf %s' % remote_path)
-#    run('gzip %s' % remote_path)
-#    get("%s.gz" % remote_path, "%s.gz" % local_path)
-#    run('rm %s.gz' % remote_path)
-#    
-#    local('pg_dump -Upostgres -xOf %s %s' % (local_db_backup_path, DB_NAME))
-#    puts('Previous local database backed up to %s' % local_db_backup_path)
-#    
-#    local('dropdb -Upostgres %s' % DB_NAME)
-#    local('createdb -Upostgres %s' % DB_NAME)
-#    local('gunzip %s.gz' % local_path)
-#    local('psql -Upostgres %s -f %s' % (DB_NAME, local_path))
-#    local ('rm %s' % local_path)
+@roles('production')
+def pull_live_data():
+   filename = "%s-%s.sql" % (DB_NAME, uuid.uuid4())
+   local_path = "%s%s" % (LOCAL_DUMP_PATH, filename)
+   remote_path = "%s%s" % (REMOTE_DUMP_PATH, filename)
+   local_db_backup_path = "%svagrant-%s-%s.sql" % (LOCAL_DUMP_PATH, DB_NAME, uuid.uuid4())
+
+   run('pg_dump -xOf %s' % remote_path)
+   run('gzip %s' % remote_path)
+   get("%s.gz" % remote_path, "%s.gz" % local_path)
+   run('rm %s.gz' % remote_path)
+   
+   local('pg_dump -Upostgres -xOf %s %s' % (local_db_backup_path, DB_NAME))
+   puts('Previous local database backed up to %s' % local_db_backup_path)
+   
+   local('dropdb -Upostgres %s' % DB_NAME)
+   local('createdb -Upostgres %s' % DB_NAME)
+   local('gunzip %s.gz' % local_path)
+   local('psql -Upostgres %s -f %s' % (DB_NAME, local_path))
+   local ('rm %s' % local_path)
 
 @roles('staging')
 def pull_staging_data():
@@ -130,15 +130,13 @@ def pull_staging_media():
     local('rm %s.gz' % media_filename)
 
 
-#@roles('production')
-#def deploy_production():
-#    with cd('/usr/local/django/flowpatrol/'):
-#        run("git pull")
-#        run("git submodule update")
-#        run("/usr/local/django/virtualenvs/flowpatrol/bin/pip install -r requirements/production.txt")
-#        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py syncdb --settings=pdssite.settings.production --noinput")
-#        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py migrate --settings=pdssite.settings.production --noinput")
-#        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py collectstatic --settings=pdssite.settings.production --noinput")
-#        run("/usr/local/django/virtualenvs/flowpatrol/bin/python manage.py compress --force --settings=pdssite.settings.production")
-#
-#    run("sudo /usr/bin/supervisorctl restart flowpatrol")
+@roles('production')
+def deploy_production():
+   with cd('../usr/local/django/flowpatrol/'):
+       run("git pull origin master")
+       run("git submodule update")
+       run("pip install -r requirements/production.txt")
+       run("python manage.py syncdb --settings=flowpatrol.settings.production --noinput")
+       run("python manage.py migrate --settings=flowpatrol.settings.production --noinput")
+       run("python manage.py collectstatic --settings=flowpatrol.settings.production --noinput")
+       run("python manage.py compress --force --settings=flowpatrol.settings.production")

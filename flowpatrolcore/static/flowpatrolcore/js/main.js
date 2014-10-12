@@ -31,6 +31,30 @@ $(document).ready(function(){
             button.addClass('inactive').addClass('fa-bars').removeClass('fa-times-circle');
         }
     });
+    $("#submit").click(function(){
+        var name = $("#name").val();
+        var email = $("#email").val();
+        var phone = $("#phone").val();
+        var message = $("#message").val();
+        // Returns successful data submission message when the entered information is stored in database.
+        var dataString = 'name1='+ name + '&email1='+ email + '&password1='+ phone + '&contact1='+ message;
+        if(name==''||email==''||phone==''||message=='') {
+            alert("Please Fill All Fields");
+        }
+        else {
+            // AJAX Code To Submit Form.
+            $.ajax({
+                type: "POST",
+                url: "/",
+                data: dataString,
+                cache: false,
+                success: function(result){
+                    alert(result);
+                }
+            });
+        }
+        return false;
+    });
 });
 
 

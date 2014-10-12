@@ -218,3 +218,5 @@ WAGTAIL_SITE_NAME = 'flowpatrol'
 
 # Override the search results template for wagtailsearch
 WAGTAILSEARCH_RESULTS_TEMPLATE = 'flowpatrol/search_results.html'
+
+MANDRILL_API_KEY = 'Z7vKU6m7pINJuxiUMco9Yw'

@@ -4,8 +4,9 @@ from django.db import models
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.management import call_command
 from django.dispatch import receiver
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.views.decorators.vary import vary_on_headers
 
 from wagtail.wagtailcore.models import Page, Orderable
 from wagtail.wagtailcore.fields import RichTextField
@@ -22,6 +23,9 @@ from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
 from taggit.models import Tag, TaggedItemBase
 from south.signals import post_migrate
+from flowpatrol.settings import MANDRILL_API_KEY
+
+import mandrill
 
 
 COMMON_PANELS = (
@@ -128,6 +132,40 @@ class HomePage(Page):
     class Meta:
         verbose_name = "Homepage"
 
+    def serve(self, request):
+        if request.method == 'POST':
+            name = request.POST.get('name')
+            email = request.POST.get('email')
+            phone = request.POST.get('phone')
+            message = request.POST.get('message')
+
+            message_text = 'Thanks '+name+'. You\' soon get an email from us.'
+            print request.POST
+
+            try:
+                mandrill_client = mandrill.Mandrill(MANDRILL_API_KEY)
+                message = { 
+                    'from_email': 'chrxr@outlook.com',
+                    'from_name': 'Chris Rogers',
+                    'text': message_text,
+                    'subject': 'Thanks for your enquiry',
+                    'to': [{'email': email,
+                        'name': 'Recipient Name',
+                        'type': 'to'}],
+                    }
+                result = mandrill_client.messages.send(message=message, async=False,)
+
+            except mandrill.Error, e:
+                # Mandrill errors are thrown as exceptions
+                print 'A mandrill error occurred: %s - %s' % (e.__class__, e)
+                # A mandrill error occurred: <class 'mandrill.UnknownSubaccountError'> - No subaccount exists with the id 'customer-123'    
+                raise
+
+            return redirect(self.url)
+        
+        return super(HomePage, self).serve(request)
+
+        
 HomePage.content_panels = [
     FieldPanel('title', classname="full title"),
     FieldPanel('headline'),

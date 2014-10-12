@@ -83,7 +83,13 @@
             <script src="{% static "flowpatrolcore/js/vendor/jquery.bxslider.min.js" %}"></script>
         {% endcompress %}
 
-        {% block extra_js %}{% endblock %} {# Override this block in individual templates in order to add javascript on a template by template basis #}
+        {% block extra_js %}
+            <script type="text/javascript">
+                var current_page = window.location.pathname;
+            </script>
+        {% endblock %} 
+
+        {# Override this block in individual templates in order to add javascript on a template by template basis #}
         
     </body>
 </html>
