@@ -6,7 +6,8 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
     <head>
-        <mex§ta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
 
         <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_postfix %} | Flowpatrol{% endblock %}</title>
 
@@ -23,7 +24,8 @@
             <!-- <link rel="stylesheet" type="text/x-scss" href="{% static "flowpatrolcore/css/main.scss" %}" /> -->
             <link rel="stylesheet" href="{% static "flowpatrolcore/css/normalize.css" %}" />
             <link rel="stylesheet" href="{% static "flowpatrolcore/css/main.css" %}" />
-            <link rel="stylesheet" media="(max-width: 1000px)" href="{% static "flowpatrolcore/css/mobile.css" %}" />
+            <link rel="stylesheet" media="(max-width: 1028px)" href="{% static "flowpatrolcore/css/tablet.css" %}" />
+            <link rel="stylesheet" media="(max-width: 600px)" href="{% static "flowpatrolcore/css/mobile.css" %}" />
             <link rel="stylesheet" href="{% static "flowpatrolcore/font-awesome-4.0.3/css/font-awesome.min.css" %}" />
         {% endcompress %}
             <link href='http://fonts.googleapis.com/css?family=Bevan' rel='stylesheet' type='text/css' />
