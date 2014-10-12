@@ -50,3 +50,5 @@ try:
 	from .local import *
 except ImportError:
 	pass
+
+MANDRILL_API_KEY = 'Z7vKU6m7pINJuxiUMco9Yw'
