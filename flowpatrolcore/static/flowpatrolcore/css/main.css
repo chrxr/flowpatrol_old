@@ -338,3 +338,20 @@ a:visited {
     margin-top:0;
 }
 
+.formContainer {
+    min-width:400px;
+    max-width:400px;
+    margin-left:20px;
+    margin-bottom:20px;
+    padding:10px;
+}
+
+.formContainer form input,textarea {
+    width:390px;
+}
+
+.formContainer input[type=submit] {
+    width:150px;
+    float:right;
+}
+
