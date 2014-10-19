@@ -236,9 +236,6 @@ a:visited {
 .captionBox p {
   margin: 0.5em 0; }
 
-.footer_item.first {
-  padding-left: 10px; }
-
 .pageTitle {
   clear: both;
   padding: 0;
@@ -458,7 +455,7 @@ a:visited {
   float: left; }
 
 .footer_item.first {
-  padding-left: 85px; }
+  text-indent: -10px; }
 
 .footer_item, .footer_item a {
   color: #FFF;
@@ -466,7 +463,9 @@ a:visited {
   padding: 0;
   padding-right: 10px;
   margin-right: 10px;
-  text-decoration: none; }
+  text-decoration: none;
+  padding-left: 10px;
+  margin-bottom: 10px; }
 
 .footer_item a:hover {
   color: #9ac475; }

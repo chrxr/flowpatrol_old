@@ -192,9 +192,6 @@ a:visited {
     margin:0.5em 0;
 }
 
-.footer_item.first {
-    padding-left:10px;
-}
 
 .pageTitle {
     clear:both;
@@ -455,7 +452,7 @@ a:visited {
 }
 
 .footer_item.first {
-    padding-left:85px;
+    text-indent: -10px;
 }
 
 .footer_item, .footer_item a {
@@ -465,11 +462,15 @@ a:visited {
     padding-right:10px;
     margin-right:10px;
     text-decoration: none;
+    padding-left:10px;
+    margin-bottom:10px;
 }
 
 .footer_item a:hover {
     color:rgb(154,196,117);
 }
+
+
 
 /* ==========================================================================
    Helper classes

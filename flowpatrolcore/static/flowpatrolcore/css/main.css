@@ -355,3 +355,10 @@ a:visited {
     float:right;
 }
 
+.footer_item.first {
+    padding-left:85px;
+}
+
+.footer_item, .footer_item a {
+    margin-bottom:0;
+}
