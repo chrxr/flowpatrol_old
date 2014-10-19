@@ -13,7 +13,7 @@ $(document).ready(function(){
     prevSelector: '#slider-prev',
     nextText: '',
     prevText: '',
-    auto: 'true',
+    auto: false,
   });
   var button = $('#mobile_menu_button'), menuItems = $('.mobileMenuItem'), menuSize = 0;
 
