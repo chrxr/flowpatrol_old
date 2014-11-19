@@ -14,7 +14,7 @@ admin.autodiscover()
 
 
 # Signal handlers
-from wagtail.wagtailsearch import register_signal_handlers as wagtailsearch_register_signal_handlers
+from wagtail.wagtailsearch.signal_handlers import register_signal_handlers as wagtailsearch_register_signal_handlers
 wagtailsearch_register_signal_handlers()
 
 
@@ -23,6 +23,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(wagtailadmin_urls)),
     url(r'^search/', include(wagtailsearch_frontend_urls)),
+
     url(r'^documents/', include(wagtaildocs_urls)),
 
     # For anything not caught by a more specific rule above, hand over to

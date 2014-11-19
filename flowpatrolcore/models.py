@@ -17,7 +17,7 @@ from wagtail.wagtailimages.models import Image
 from wagtail.wagtaildocs.edit_handlers import DocumentChooserPanel
 from wagtail.wagtailsnippets.models import register_snippet
 from wagtail.wagtailforms.models import AbstractEmailForm, AbstractFormField
-from wagtail.wagtailsearch import indexed
+# from wagtail.wagtailsearch import indexed
 
 from modelcluster.fields import ParentalKey
 from modelcluster.tags import ClusterTaggableManager
