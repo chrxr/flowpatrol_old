@@ -144,3 +144,7 @@
 .strapline h2 {
     font-size:1em;
 }
+
+input.button {
+    height:1px;
+}

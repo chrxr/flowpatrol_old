@@ -1,3 +1,91 @@
+/**
+ * Author(s): Helen Chapman
+ *
+ * MIXINS
+ *
+ * Includes all mixins that are shared across the site, 
+ * both parametric (function) mixins and standard mixins.
+ *
+ * MIXIN EXAMPLE:
+ *  ul {
+ *    .some-reusable-class;
+ *  }
+ * 
+ * PARAMETRIC MIXIN EXAMPLE: 
+ *  .parametric-mixin($param1, $param2) {
+ *    color: $param1;
+ *    background: $param2;   
+ *  }
+ *
+ */
+.visuallyhidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px; }
+  .visuallyhidden:active, .visuallyhidden:focus {
+    clip: auto;
+    height: auto;
+    margin: 0;
+    overflow: visible;
+    position: static;
+    width: auto; }
+
+.clearfix {
+  *zoom: 1; }
+  .clearfix:before, .clearfix:after {
+    display: table;
+    content: "";
+    line-height: 0; }
+  .clearfix:after {
+    clear: both; }
+
+/* Removes standard list styles */
+.unlist, .unlist ul, .unlist li {
+  list-style-type: none;
+  font-style: normal; }
+.unlist, .unlist ul {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0; }
+.unlist li:before {
+  content: none;
+  margin: auto; }
+
+@font-face {
+  font-family: Langdon;
+  src: url(../fonts/Langdon.otf); }
+
+@font-face {
+  font-family: FiraSans;
+  src: url(../fonts/FiraSansOT-Regular.otf);
+  font-weight: normal; }
+
+@font-face {
+  font-family: FiraSans;
+  src: url(../fonts/FiraSansOT-Bold.otf);
+  font-weight: bold; }
+
+@font-face {
+  font-family: FiraSans;
+  src: url(../fonts/FiraSansOT-RegularItalic.otf);
+  font-weight: normal;
+  font-style: italic; }
+
+@font-face {
+  font-family: SansPro;
+  src: url(../fonts/SourceSansPro-Regular.otf);
+  font-weight: normal; }
+
+@font-face {
+  font-family: SansPro;
+  src: url(../fonts/SourceSansPro-Bold.otf);
+  font-weight: bold; }
+
 .topBannerContainer {
   height: 149px;
   width: 100%;
@@ -91,7 +179,7 @@
   background: -o-linear-gradient(top, #9ac475 85%, #4a8901 100%);
   background: -ms-linear-gradient(top, #9ac475 85%, #4a8901 100%);
   background: linear-gradient(to bottom, #9ac475 85%, #4a8901 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ac475', endColorstr='#4a8901',GradientType=0 ); }
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='#4a8901',GradientType=0 ); }
 
 .topMenuItem a:active {
   color: white; }
@@ -230,10 +318,22 @@
 
 .formContainer input[type=submit] {
   width: 150px;
-  float: right; }
+  float: right;
+  height: 30px;
+  border-radius: 10px;
+  background: #67A82F;
+  border: none;
+  border: 2px solid #215D01;
+  font-weight: bold; }
+
+.formContainer input[type=submit]:hover {
+  color: white; }
 
 .footer_item.first {
   padding-left: 85px; }
 
 .footer_item, .footer_item a {
   margin-bottom: 0; }
+
+.pageTitle {
+  margin-left: 85px; }

@@ -1,3 +1,7 @@
+@import 'variables';
+@import 'mixins';
+@import 'fonts';
+
 .topBannerContainer {
     height:149px;
     width:100%;
@@ -102,7 +106,7 @@
     background: -o-linear-gradient(top, rgba(154,196,117,1) 85%,rgba(74,137,1,1) 100%);
     background: -ms-linear-gradient(top, rgba(154,196,117,1) 85%,rgba(74,137,1,1) 100%);
     background: linear-gradient(to bottom, rgba(154,196,117,1) 85%,rgba(74,137,1,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9ac475', endColorstr='#4a8901',GradientType=0 ); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='', endColorstr='#4a8901',GradientType=0 ); 
 }
 
 .topMenuItem a:active {
@@ -261,13 +265,23 @@
     padding:10px;
 }
 
-.formContainer form input,textarea {
-    width:390px;
+.formContainer form input, textarea {
+  width: 390px; 
 }
 
 .formContainer input[type=submit] {
-    width:150px;
-    float:right;
+  width: 150px;
+  float: right; 
+  height:30px;
+  border-radius:10px;
+  background:$green;
+  border:none;
+  border:2px solid $dark-green;
+  font-weight: bold;
+}
+
+.formContainer input[type=submit]:hover {
+  color:white;
 }
 
 .footer_item.first {
@@ -276,4 +290,8 @@
 
 .footer_item, .footer_item a {
     margin-bottom:0;
+}
+
+.pageTitle {
+    margin-left:85px;
 }
